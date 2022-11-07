@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 namespace NetTaskGetFront.Web.Infrastracture.Installers
 {
@@ -6,7 +7,11 @@ namespace NetTaskGetFront.Web.Infrastracture.Installers
     {
         public static IServiceCollection AddAppMvc(this IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                });
             services.AddRouting(options => options.LowercaseUrls = true);
 
             services.Configure<ApiBehaviorOptions>(options =>

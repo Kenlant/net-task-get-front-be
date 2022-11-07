@@ -3,6 +3,8 @@ using FluentValidation;
 using MediatR;
 using NetTaskGetFront.Core.Infrastracture.PipelineBehaviours;
 using System.Reflection;
+using NetTaskGetFront.Core.Interfaces.Processors;
+using NetTaskGetFront.Core.Services.Processors;
 
 namespace NetTaskGetFront.Core
 {
@@ -16,6 +18,8 @@ namespace NetTaskGetFront.Core
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
 
             services.AddValidatorsFromAssembly(assembly);
+
+            services.AddSingleton<IStockProcessor, StockProcessor>();
 
             return services;
         }
