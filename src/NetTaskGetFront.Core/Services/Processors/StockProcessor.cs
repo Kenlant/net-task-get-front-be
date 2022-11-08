@@ -6,7 +6,8 @@ namespace NetTaskGetFront.Core.Services.Processors
 {
     public class StockProcessor : IStockProcessor
     {
-        public async Task<IEnumerable<StockPerfomance>> CalculatePerfomanceAsync(IEnumerable<Stock> data)
+        public async Task<IEnumerable<StockPerfomance>> CalculatePerfomanceAsync(IEnumerable<Stock> data,
+            CancellationToken cancellationToken = default)
         {
             if (data == null) return new List<StockPerfomance>();
 

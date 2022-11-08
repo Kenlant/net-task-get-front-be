@@ -13,19 +13,22 @@ namespace NetTaskGetFront.Core.Requests.Stocks.Commands.Get
         private readonly IStockService _stockService;
         private readonly IStockProcessor _stockProcessor;
         private readonly IStockRepository _stockRepository;
+        private readonly ITimeProvider _timeProvider;
 
         public GetStockQueryHandler(IStockService stockService,
             IStockProcessor stockProcessor,
-            IStockRepository stockRepository)
+            IStockRepository stockRepository,
+            ITimeProvider timeProvider)
         {
             _stockService = stockService;
             _stockProcessor = stockProcessor;
             _stockRepository = stockRepository;
+            _timeProvider = timeProvider;
         }
 
         public async Task<GetStockViewModel> Handle(GetStockQuery request, CancellationToken cancellationToken)
         {
-            var now = DateTimeOffset.UtcNow;
+            var now = _timeProvider.Now;
             var startDate = now.AddDays(-DaysPerWeek);
             var defaultStockData = await _stockService.GetAsync(SAndPTicker, request.Period, startDate, now);
             var requestedStockData = await _stockService.GetAsync(request.Ticker, request.Period, startDate, now);

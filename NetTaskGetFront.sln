@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTaskGetFront.Web", "src\NetTaskGetFront.Web\NetTaskGetFront.Web.csproj", "{D23D21A3-479B-4607-B1EE-64AB58BF79FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTaskGetFront.Web", "src\NetTaskGetFront.Web\NetTaskGetFront.Web.csproj", "{D23D21A3-479B-4607-B1EE-64AB58BF79FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTaskGetFront.Core", "src\NetTaskGetFront.Core\NetTaskGetFront.Core.csproj", "{787DE2A7-C857-4AA7-96C1-C5F3AE8CA1F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTaskGetFront.Core", "src\NetTaskGetFront.Core\NetTaskGetFront.Core.csproj", "{787DE2A7-C857-4AA7-96C1-C5F3AE8CA1F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTaskGetFront.Persistence", "src\NetTaskGetFront.Persistence\NetTaskGetFront.Persistence.csproj", "{15AC8538-A136-48DD-A8CF-372A8A4549A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTaskGetFront.Persistence", "src\NetTaskGetFront.Persistence\NetTaskGetFront.Persistence.csproj", "{15AC8538-A136-48DD-A8CF-372A8A4549A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTaskGetFront.Domain", "src\NetTaskGetFront.Domain\NetTaskGetFront.Domain.csproj", "{FCB080CE-5FFE-4280-8A77-E66C48FF5905}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTaskGetFront.Domain", "src\NetTaskGetFront.Domain\NetTaskGetFront.Domain.csproj", "{FCB080CE-5FFE-4280-8A77-E66C48FF5905}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{CB630B35-5B5A-4A1E-BCAA-C6C6951CC41E}"
 EndProject
@@ -17,7 +17,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistence", "Persistence"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A30EA42A-B35A-47EE-B883-3389846CC03D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTaskGetFront.PolygonStockService", "src\NetTaskGetFront.PolygonStockService\NetTaskGetFront.PolygonStockService.csproj", "{29EE6743-2D7A-4A33-B837-FE02E068305E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetTaskGetFront.PolygonStockService", "src\NetTaskGetFront.PolygonStockService\NetTaskGetFront.PolygonStockService.csproj", "{29EE6743-2D7A-4A33-B837-FE02E068305E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{B038C545-73AD-40F5-8E16-D62B2D6137A4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetTaskGetFront.Core.UnitTests", "tests\NetTaskGetFront.Core.UnitTests\NetTaskGetFront.Core.UnitTests.csproj", "{9DE2320C-65B4-45E3-8294-88C55C75733F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,10 @@ Global
 		{29EE6743-2D7A-4A33-B837-FE02E068305E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{29EE6743-2D7A-4A33-B837-FE02E068305E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29EE6743-2D7A-4A33-B837-FE02E068305E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DE2320C-65B4-45E3-8294-88C55C75733F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE2320C-65B4-45E3-8294-88C55C75733F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE2320C-65B4-45E3-8294-88C55C75733F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE2320C-65B4-45E3-8294-88C55C75733F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +62,7 @@ Global
 		{15AC8538-A136-48DD-A8CF-372A8A4549A9} = {7D00DF4A-7D94-45F4-AF0B-7977F4EFF91F}
 		{FCB080CE-5FFE-4280-8A77-E66C48FF5905} = {CB630B35-5B5A-4A1E-BCAA-C6C6951CC41E}
 		{29EE6743-2D7A-4A33-B837-FE02E068305E} = {A30EA42A-B35A-47EE-B883-3389846CC03D}
+		{9DE2320C-65B4-45E3-8294-88C55C75733F} = {B038C545-73AD-40F5-8E16-D62B2D6137A4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1585CD51-6411-4177-9CAC-BEF93E9447E4}

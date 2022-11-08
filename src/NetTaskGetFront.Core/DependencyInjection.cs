@@ -5,6 +5,8 @@ using NetTaskGetFront.Core.Infrastracture.PipelineBehaviours;
 using System.Reflection;
 using NetTaskGetFront.Core.Interfaces.Processors;
 using NetTaskGetFront.Core.Services.Processors;
+using NetTaskGetFront.Core.Interfaces.Services;
+using NetTaskGetFront.Core.Services.Services;
 
 namespace NetTaskGetFront.Core
 {
@@ -20,6 +22,8 @@ namespace NetTaskGetFront.Core
             services.AddValidatorsFromAssembly(assembly);
 
             services.AddSingleton<IStockProcessor, StockProcessor>();
+            services.AddSingleton<ITimeProvider, TimeProvider>();
+
 
             return services;
         }
