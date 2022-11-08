@@ -1,4 +1,4 @@
-﻿namespace NetTaskGetFront.Core.Enums
+﻿namespace NetTaskGetFront.Domain.Enums
 {
     public enum TimePeriod
     {

@@ -1,4 +1,5 @@
 ﻿using NetTaskGetFront.Core;
+using NetTaskGetFront.Persistence;
 using NetTaskGetFront.PolygonStockService;
 using NetTaskGetFront.Web.Infrastracture.Installers;
 using NetTaskGetFront.Web.Infrastracture.Middlewares;
@@ -19,6 +20,7 @@ namespace NetTaskGetFront.Web
             services.AddAppMvc();
             services.AddAppOpenApi();
             services.AddCore();
+            services.AddPersistence(_configuration);
             services.AddPoligonStockService(_configuration);
         }
 
@@ -27,6 +29,7 @@ namespace NetTaskGetFront.Web
             app.UseHttpsRedirection();
             app.UseExceptionHandlingMiddleware();
             app.UseAppMvc();
+            app.UsePersistence();
             app.UseAppOpenApi();
         }
     }

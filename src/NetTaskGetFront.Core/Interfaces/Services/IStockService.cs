@@ -1,10 +1,10 @@
-﻿using NetTaskGetFront.Core.Enums;
-using NetTaskGetFront.Core.Models.Services.StockService;
+﻿using NetTaskGetFront.Domain.Entities;
+using NetTaskGetFront.Domain.Enums;
 
 namespace NetTaskGetFront.Core.Interfaces.Services
 {
     public interface IStockService
     {
-        Task<StockData> Get(string ticker, TimePeriod period, DateTimeOffset startDate, DateTimeOffset endDate);
+        Task<IEnumerable<Stock>> GetAsync(string ticker, TimePeriod period, DateTimeOffset startDate, DateTimeOffset endDate);
     }
 }

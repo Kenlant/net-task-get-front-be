@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using NetTaskGetFront.Core.Interfaces.Processors;
+using NetTaskGetFront.Core.Interfaces.Repositories;
 using NetTaskGetFront.Core.Interfaces.Services;
-using NetTaskGetFront.Core.Models.Processors;
 
-namespace NetTaskGetFront.Core.Requests.Stock.Commands.Get
+namespace NetTaskGetFront.Core.Requests.Stocks.Commands.Get
 {
     public class GetStockQueryHandler : IRequestHandler<GetStockQuery, GetStockViewModel>
     {
@@ -12,27 +12,30 @@ namespace NetTaskGetFront.Core.Requests.Stock.Commands.Get
 
         private readonly IStockService _stockService;
         private readonly IStockProcessor _stockProcessor;
+        private readonly IStockRepository _stockRepository;
 
-        public GetStockQueryHandler(IStockService stockService, IStockProcessor stockProcessor)
+        public GetStockQueryHandler(IStockService stockService,
+            IStockProcessor stockProcessor,
+            IStockRepository stockRepository)
         {
             _stockService = stockService;
             _stockProcessor = stockProcessor;
+            _stockRepository = stockRepository;
         }
 
         public async Task<GetStockViewModel> Handle(GetStockQuery request, CancellationToken cancellationToken)
         {
             var now = DateTimeOffset.UtcNow;
             var startDate = now.AddDays(-DaysPerWeek);
-            var defaultStockData = await _stockService.Get(SAndPTicker, request.Period, startDate, now);
-            var requestedStockData = await _stockService.Get(request.Ticker, request.Period, startDate, now);
+            var defaultStockData = await _stockService.GetAsync(SAndPTicker, request.Period, startDate, now);
+            var requestedStockData = await _stockService.GetAsync(request.Ticker, request.Period, startDate, now);
+
+            var stocks = defaultStockData.Concat(requestedStockData);
+            await _stockRepository.CreateBatchAsync(stocks, cancellationToken);
 
             var result = new GetStockViewModel
             {
-                StockPerfomance = new List<StockPerfomance>
-                {
-                    await _stockProcessor.CalculatePerfomance(defaultStockData),
-                    await _stockProcessor.CalculatePerfomance(requestedStockData)
-                }
+                StockPerfomance = await _stockProcessor.CalculatePerfomanceAsync(stocks)
             };
 
             return result;

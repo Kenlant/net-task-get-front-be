@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NetTaskGetFront.Core\NetTaskGetFront.Core.csproj" />
+    <ProjectReference Include="..\NetTaskGetFront.Persistence\NetTaskGetFront.Persistence.csproj" />
     <ProjectReference Include="..\NetTaskGetFront.PolygonStockService\NetTaskGetFront.PolygonStockService.csproj" />
   </ItemGroup>
 

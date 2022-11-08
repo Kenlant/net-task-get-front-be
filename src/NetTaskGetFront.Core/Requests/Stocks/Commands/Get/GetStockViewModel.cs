@@ -1,6 +1,6 @@
 ﻿using NetTaskGetFront.Core.Models.Processors;
 
-namespace NetTaskGetFront.Core.Requests.Stock.Commands.Get
+namespace NetTaskGetFront.Core.Requests.Stocks.Commands.Get
 {
     public class GetStockViewModel
     {

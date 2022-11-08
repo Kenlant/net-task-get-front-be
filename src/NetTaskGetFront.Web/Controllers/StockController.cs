@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NetTaskGetFront.Core.Requests.Stock.Commands.Get;
+using NetTaskGetFront.Core.Requests.Stocks.Commands.Get;
 using NetTaskGetFront.Web.Infrastracture.Controllers;
 
 namespace NetTaskGetFront.Web.Controllers

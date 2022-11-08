@@ -1,7 +1,7 @@
-﻿using NetTaskGetFront.Core.Enums;
-using NetTaskGetFront.Core.Infrastracture.Interfaces;
+﻿using NetTaskGetFront.Core.Infrastracture.Interfaces;
+using NetTaskGetFront.Domain.Enums;
 
-namespace NetTaskGetFront.Core.Requests.Stock.Commands.Get
+namespace NetTaskGetFront.Core.Requests.Stocks.Commands.Get
 {
     public class GetStockQuery: IHandleableRequest<GetStockQuery, GetStockQueryHandler, GetStockViewModel>
     {

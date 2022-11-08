@@ -1,6 +1,6 @@
-﻿using NetTaskGetFront.Core.Enums;
-using NetTaskGetFront.Core.Interfaces.Services;
-using NetTaskGetFront.Core.Models.Services.StockService;
+﻿using NetTaskGetFront.Core.Interfaces.Services;
+using NetTaskGetFront.Domain.Entities;
+using NetTaskGetFront.Domain.Enums;
 
 namespace NetTaskGetFront.PolygonStockService
 {
@@ -13,7 +13,7 @@ namespace NetTaskGetFront.PolygonStockService
             _client = client;
         }
 
-        public async Task<StockData> Get(string ticker, TimePeriod period, DateTimeOffset startDate, DateTimeOffset endDate)
+        public async Task<IEnumerable<Stock>> GetAsync(string ticker, TimePeriod period, DateTimeOffset startDate, DateTimeOffset endDate)
         {
             var from = startDate.ToString("yyyy-MM-dd");
             var to = endDate.ToString("yyyy-MM-dd");
@@ -22,18 +22,15 @@ namespace NetTaskGetFront.PolygonStockService
             
             var response = await _client.GetAggregated(ticker, multiplier, periodString, from, to);
 
-            var result = new StockData
-            {
-                Ticker = response.Ticker,
-                StockPeriodData = response.Results
-                    .Select(x => new StockPeriodData
-                    {
-                        Price = x.OpenPrice,
-                        Time = x.Time,
-                        Period = period
-                    })
-                    .ToList()
-            };
+            var result = response.Results
+                .Select(x => new Stock
+                {
+                    Price = x.OpenPrice,
+                    Ticker = response.Ticker,
+                    Timeperiod = period,
+                    Timestamp = x.Time
+                })
+                .ToList();
 
             return result;
         }

@@ -1,6 +1,4 @@
-﻿using NetTaskGetFront.Core.Models.Services.StockService;
-
-namespace NetTaskGetFront.Core.Models.Processors
+﻿namespace NetTaskGetFront.Core.Models.Processors
 {
     public class StockPerfomance
     {

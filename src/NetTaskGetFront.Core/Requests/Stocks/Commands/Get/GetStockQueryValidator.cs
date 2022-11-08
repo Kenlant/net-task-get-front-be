@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace NetTaskGetFront.Core.Requests.Stock.Commands.Get
+namespace NetTaskGetFront.Core.Requests.Stocks.Commands.Get
 {
     public class GetStockQueryValidator: AbstractValidator<GetStockQuery>
     {
