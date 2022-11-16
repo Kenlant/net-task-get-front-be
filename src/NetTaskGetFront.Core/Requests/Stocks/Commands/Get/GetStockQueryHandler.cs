@@ -2,6 +2,7 @@
 using NetTaskGetFront.Core.Interfaces.Processors;
 using NetTaskGetFront.Core.Interfaces.Repositories;
 using NetTaskGetFront.Core.Interfaces.Services;
+using NetTaskGetFront.Domain.Entities;
 
 namespace NetTaskGetFront.Core.Requests.Stocks.Commands.Get
 {
@@ -30,15 +31,29 @@ namespace NetTaskGetFront.Core.Requests.Stocks.Commands.Get
         {
             var now = _timeProvider.Now;
             var startDate = now.AddDays(-DaysPerWeek);
-            var defaultStockData = await _stockService.GetAsync(SAndPTicker, request.Period, startDate, now);
-            var requestedStockData = await _stockService.GetAsync(request.Ticker, request.Period, startDate, now);
+            var defaultStockData = await _stockRepository.GetListAsync(SAndPTicker, startDate.ToUnixTimeMilliseconds(), now.ToUnixTimeMilliseconds());
+            var dataToStore = new List<Stock>();
+            if (!defaultStockData.Any())
+            {
+                defaultStockData = await _stockService.GetAsync(SAndPTicker, request.Period, startDate, now);
+                dataToStore.AddRange(defaultStockData);
+            }
 
-            var stocks = defaultStockData.Concat(requestedStockData);
-            await _stockRepository.CreateBatchAsync(stocks, cancellationToken);
+            var requestedStockData = await _stockRepository.GetListAsync(request.Ticker, startDate.ToUnixTimeMilliseconds(), now.ToUnixTimeMilliseconds());
+            if (!requestedStockData.Any())
+            {
+                requestedStockData = await _stockService.GetAsync(request.Ticker, request.Period, startDate, now);
+                dataToStore.AddRange(requestedStockData);
+            }
+
+            if (dataToStore.Any())
+            {
+                await _stockRepository.CreateBatchAsync(dataToStore, cancellationToken);
+            }
 
             var result = new GetStockViewModel
             {
-                StockPerfomance = await _stockProcessor.CalculatePerfomanceAsync(stocks)
+                StockPerfomance = await _stockProcessor.CalculatePerfomanceAsync(defaultStockData.Concat(requestedStockData))
             };
 
             return result;

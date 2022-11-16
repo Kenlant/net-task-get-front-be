@@ -1,4 +1,6 @@
-﻿namespace NetTaskGetFront.Core.Interfaces.Repositories.Base
+﻿using NetTaskGetFront.Domain.Entities;
+
+namespace NetTaskGetFront.Core.Interfaces.Repositories.Base
 {
     public interface IRepository<TEntity> where TEntity : class
     {

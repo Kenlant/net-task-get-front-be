@@ -4,17 +4,17 @@ namespace NetTaskGetFront.Persistence.Repositories.Base
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly NetTaskGetFrontDbContext _dbContext;
+        protected readonly NetTaskGetFrontDbContext Context;
 
         public Repository(NetTaskGetFrontDbContext dbContext)
         {
-            _dbContext = dbContext;
+            Context = dbContext;
         }
 
         public async Task CreateBatchAsync(IEnumerable<TEntity> entities, CancellationToken cancellationToken = default)
         {
-            _dbContext.Set<TEntity>().AddRange(entities);
-            await _dbContext.SaveChangesAsync();
+            Context.Set<TEntity>().AddRange(entities);
+            await Context.SaveChangesAsync();
         }
     }
 }
